@@ -1,0 +1,32 @@
+image: docker:git
+
+services:
+- docker:dind
+
+before_script:
+- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+stages:
+- build
+- test
+- release
+
+variables:
+  IMAGE_NAME: wadetandy/shepherd-testing
+
+build:
+  stage: build
+  script:
+    - docker build -t $IMAGE_NAME .
+
+test:
+  stage: test
+  script:
+    - docker run $IMAGE_NAME
+
+push_image:
+  stage: release
+  script:
+    - docker push $IMAGE_NAME
+
+
