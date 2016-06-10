@@ -4,7 +4,8 @@ services:
 - docker:dind
 
 before_script:
-- sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+- echo $DOCKER_USER
+- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
 stages:
 - build
