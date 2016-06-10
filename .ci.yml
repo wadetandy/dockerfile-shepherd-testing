@@ -4,7 +4,6 @@ services:
 - docker:dind
 
 before_script:
-- echo $DOCKER_USER
 - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
 stages:
@@ -13,7 +12,7 @@ stages:
 - release
 
 variables:
-  IMAGE_NAME: wadetandy/shepherd-testing
+  IMAGE_NAME: wadetandy/shepherd-testing:latest
 
 build:
   stage: build
